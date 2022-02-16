@@ -1,0 +1,10 @@
+LOOP AT lt_root REFERENCE INTO DATA(ls_root) WHERE zztm_btype IS INITIAL.
+          /bobf/cl_tra_serv_mgr_factory=>get_service_manager( /scmtms/if_tor_c=>sc_bo_key )->retrieve_by_association(
+            EXPORTING
+              iv_node_key    = /scmtms/if_tor_c=>sc_node-root
+              it_key         = VALUE #( ( key = ls_root->key ) )
+              iv_association = /scmtms/if_tor_c=>sc_association-root-assigned_fus
+              iv_fill_data   = abap_true
+            IMPORTING
+              eo_message    = eo_message
+              et_data       = lt_fu ).
